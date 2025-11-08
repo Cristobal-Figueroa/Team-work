@@ -9,7 +9,20 @@
   <body>
     <header class="page-header">
       <div class="wrapper">
-        <h1 id="productName">Product details</h1>
+        <div class="page-header__top">
+          <h1 id="productName">Product details</h1>
+          <nav class="header-actions">
+            <button
+              class="button button--ghost cart-button"
+              id="cartButton"
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+            >
+              View cart
+            </button>
+          </nav>
+        </div>
         <p class="lead" id="productTagline">
           Loading the information of the selected product...
         </p>
@@ -26,6 +39,28 @@
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+    <div class="cart-modal" id="cartModal" aria-hidden="true">
+      <div class="cart-modal__backdrop" data-cart-close></div>
+      <div class="cart-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
+        <header class="cart-modal__header">
+          <h2 id="cartModalTitle">Shopping cart</h2>
+          <button class="cart-modal__close" type="button" data-cart-close aria-label="Close cart">&times;</button>
+        </header>
+        <section class="cart-modal__body">
+          <p id="cartEmptyMessage" class="cart-modal__empty">Your cart is empty.</p>
+          <ul id="cartItems" class="cart-modal__list"></ul>
+        </section>
+        <footer class="cart-modal__footer">
+          <div class="cart-modal__total">
+            <span>Total</span>
+            <strong id="cartTotal">$0</strong>
+          </div>
+          <button class="button button--primary cart-modal__checkout" type="button" data-cart-close>
+            Continue shopping
+          </button>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="../js/product.js"></script>
   </body>
 </html>

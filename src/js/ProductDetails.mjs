@@ -1,6 +1,4 @@
-import { setLocalStorage, getLocalStorage, formatCurrency } from './utils.mjs';
-
-const CART_KEY = 'so-cart';
+import { CART_KEY, setLocalStorage, getLocalStorage, formatCurrency } from './utils.mjs';
 
 function ensureArray(value) {
   return Array.isArray(value) ? value : [];
@@ -42,6 +40,8 @@ export default class ProductDetails {
     const currentCart = ensureArray(getLocalStorage(CART_KEY));
     currentCart.push({ ...this.product, quantity: 1 });
     setLocalStorage(CART_KEY, currentCart);
+
+    window.dispatchEvent(new CustomEvent('cart:updated'));
 
     const confirmation = document.getElementById('cartConfirmation');
     if (confirmation) {
