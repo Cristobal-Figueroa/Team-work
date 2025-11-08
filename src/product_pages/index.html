@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Details | GearUp Adventures</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="wrapper">
+        <h1 id="productName">Product details</h1>
+        <p class="lead" id="productTagline">
+          Loading the information of the selected product...
+        </p>
+      </div>
+    </header>
+    <main class="wrapper">
+      <section id="productDetails" class="product-details"></section>
+    </main>
+    <footer class="page-footer">
+      <div class="wrapper">
+        <p>&copy; <span id="year"></span> GearUp Adventures</p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script type="module" src="../js/product.js"></script>
+  </body>
+</html>

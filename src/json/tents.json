@@ -1,0 +1,91 @@
+[
+  {
+    "Id": "880RR",
+    "Name": "Marmot Ajax 3",
+    "Tagline": "Spacious and airy for weekend adventures.",
+    "Price": 299.95,
+    "Image": "https://m.media-amazon.com/images/I/91mdnKBl-qL.jpg",
+    "ImageAlt": "Marmot Ajax 3 tent pitched in a forest",
+    "Description": "The Marmot Ajax 3 blends light weight with superior ventilation and a reliable three-person design.",
+    "Features": [
+      "Capacity for 3 campers",
+      "Double-wall construction with excellent airflow",
+      "Pre-bent aluminum poles for more interior space",
+      "Large vestibules for gear"
+    ],
+    "Includes": [
+      "Inner tent",
+      "Rainfly",
+      "Aluminum poles",
+      "Stakes and guylines",
+      "Stuff sack"
+    ]
+  },
+  {
+    "Id": "873RT",
+    "Name": "The North Face Alpine Guide",
+    "Tagline": "Extreme durability for alpine expeditions.",
+    "Price": 549.5,
+    "Image": "https://www.thenorthface.cl/media/catalog/product/n/f/nf0a3by9_gne_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1080&width=928&canvas=928:1080",
+    "ImageAlt": "The North Face Alpine tent on snowy terrain",
+    "Description": "Built to withstand strong winds and heavy snow, this four-season shelter is ready for your next summit push.",
+    "Features": [
+      "Geodesic frame for maximum rigidity",
+      "Abrasion-resistant fabrics",
+      "Fully taped seams and snow flaps",
+      "Adjustable vents"
+    ],
+    "Includes": [
+      "Tent body",
+      "Outer fly",
+      "DAC Featherlite poles",
+      "Snow anchors",
+      "Compression sack"
+    ]
+  },
+  {
+    "Id": "654TY",
+    "Name": "Kelty Trail Ridge 4",
+    "Tagline": "Family comfort with panoramic views.",
+    "Price": 329.0,
+    "Image": "https://assets.altaventa.cl/sherpa/4b35d5fb-6719-11f0-91ec-5600051be640.jpg",
+    "ImageAlt": "Kelty Trail Ridge tent glowing at sunset",
+    "Description": "Ideal for family getaways, it offers generous interior space with near-vertical walls and dual doors for easy access.",
+    "Features": [
+      "Sleeps up to 4 campers",
+      "Vertical walls for extra elbow room",
+      "Mesh ceiling for stargazing",
+      "Dual vestibules",
+      "Taped seams"
+    ],
+    "Includes": [
+      "Tent body",
+      "Waterproof rainfly",
+      "Aluminum poles",
+      "Steel stakes",
+      "Repair kit"
+    ]
+  },
+  {
+    "Id": "320BZ",
+    "Name": "Black Diamond Eldorado",
+    "Tagline": "Lightweight reliability for technical routes.",
+    "Price": 699.99,
+    "Image": "https://d1nymbkeomeoqg.cloudfront.net/photos/14/28/264314_5314_XL.jpg",
+    "ImageAlt": "Black Diamond Eldorado tent in a rocky alpine zone",
+    "Description": "An iconic single-wall tent engineered for climbers who need serious protection without the weight penalty.",
+    "Features": [
+      "Breathable single-wall fabric",
+      "Internal poles for added strength",
+      "Reinforced seams",
+      "Compact, lightweight design"
+    ],
+    "Includes": [
+      "Tent body",
+      "Internal poles",
+      "Ultralight stakes",
+      "Repair kit",
+      "Stuff sack"
+    ]
+  }
+]

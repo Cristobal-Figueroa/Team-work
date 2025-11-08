@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tents | W02 Team Activity</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="wrapper">
+        <h1>Backpacking Tents</h1>
+        <p class="lead">
+          Explore our curated tent selection and open any card to learn more
+          about each model.
+        </p>
+      </div>
+    </header>
+    <main class="wrapper">
+      <section class="product-grid">
+        <article class="product-card">
+          <img src="https://m.media-amazon.com/images/I/91mdnKBl-qL.jpg" alt="Marmot Ajax 3" />
+          <div class="product-card__body">
+            <h2>Marmot Ajax 3</h2>
+            <p>Balanced space and ventilation for weekend getaways.</p>
+            <a class="button" href="product_pages/?product=880RR">View details</a>
+          </div>
+        </article>
+        <article class="product-card">
+          <img src="https://www.thenorthface.cl/media/catalog/product/n/f/nf0a3by9_gne_1.jpg?optimize=medium&amp;bg-color=255,255,255&amp;fit=bounds&amp;height=1080&amp;width=928&amp;canvas=928:1080" alt="North Face Alpine" />
+          <div class="product-card__body">
+            <h2>North Face Alpine</h2>
+            <p>Engineered to withstand harsh alpine conditions.</p>
+            <a class="button" href="product_pages/?product=873RT">View details</a>
+          </div>
+        </article>
+        <article class="product-card">
+          <img src="https://assets.altaventa.cl/sherpa/4b35d5fb-6719-11f0-91ec-5600051be640.jpg" alt="Kelty Trail Ridge" />
+          <div class="product-card__body">
+            <h2>Kelty Trail Ridge</h2>
+            <p>Spacious and comfortable for families or friends.</p>
+            <a class="button" href="product_pages/?product=654TY">View details</a>
+          </div>
+        </article>
+        <article class="product-card">
+          <img src="https://d1nymbkeomeoqg.cloudfront.net/photos/14/28/264314_5314_XL.jpg" alt="Black Diamond Eldorado" />
+          <div class="product-card__body">
+            <h2>Black Diamond Eldorado</h2>
+            <p>Lightweight and rugged, ideal for technical climbs.</p>
+            <a class="button" href="product_pages/?product=320BZ">View details</a>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <div class="wrapper">
+        <p>&copy; <span id="year"></span> GearUp Adventures</p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
