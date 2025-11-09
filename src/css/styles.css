@@ -234,37 +234,6 @@ body {
   font-weight: 600;
 }
 
-.cart-button::after {
-  content: attr(data-count);
-  position: absolute;
-  top: -0.8rem;
-  right: -0.8rem;
-  min-width: 1.9rem;
-  min-height: 1.9rem;
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #14b8a6 100%);
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ffffff;
-  box-shadow: 0 8px 16px rgba(13, 148, 136, 0.35);
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.9);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.cart-button[data-count]:not([data-count="0"])::after {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
-
 body.cart-open {
   overflow: hidden;
 }
