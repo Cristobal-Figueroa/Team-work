@@ -1,4 +1,4 @@
-import { CART_KEY, getLocalStorage, formatCurrency } from './utils.mjs';
+import { CART_KEY, getLocalStorage, setLocalStorage, formatCurrency } from './utils.mjs';
 
 function aggregateCartItems(items = []) {
   if (!Array.isArray(items)) return [];
@@ -28,6 +28,7 @@ export default class CartModal {
     this.closeButtons = this.modal?.querySelectorAll('[data-cart-close]') ?? [];
 
     this.updateState = this.updateState.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
     this.handleKeydown = this.handleKeydown.bind(this);
   }
 
@@ -109,23 +110,43 @@ export default class CartModal {
         const itemsMarkup = aggregated
           .map(
             (item) => `
-              <li class="cart-modal__item">
+              <li class="cart-modal__item" data-item-id="${item.Id}">
                 <img src="${item.Image}" alt="${item.ImageAlt ?? item.Name}" />
                 <div class="cart-modal__details">
                   <h3>${item.Name}</h3>
                   <p class="cart-modal__quantity">Quantity: ${item.quantity}</p>
                   <p class="cart-modal__price">${formatCurrency(item.Price * item.quantity)}</p>
                 </div>
+                <button class="cart-modal__remove" type="button" aria-label="Remove ${item.Name} from cart">&times;</button>
               </li>
             `
           )
           .join('');
         this.itemsList.innerHTML = itemsMarkup;
+
+        this.itemsList.querySelectorAll('.cart-modal__remove').forEach((button) => {
+          button.addEventListener('click', this.handleRemove);
+        });
       }
     }
 
     if (this.totalElement) {
       this.totalElement.textContent = formatCurrency(total);
     }
+  }
+
+  handleRemove(event) {
+    const itemElement = event.currentTarget.closest('.cart-modal__item');
+    const itemId = itemElement?.dataset.itemId;
+    if (!itemId) return;
+
+    const items = getLocalStorage(CART_KEY);
+    if (!Array.isArray(items)) return;
+
+    const updated = items.filter((item) => item.Id !== itemId);
+    setLocalStorage(CART_KEY, updated);
+
+    window.dispatchEvent(new CustomEvent('cart:updated'));
+    this.updateState();
   }
 }
