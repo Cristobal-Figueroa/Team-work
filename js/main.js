@@ -20,25 +20,25 @@ const categories = [
   {
     id: 'tents',
     name: 'Tents',
-    description: 'Abrigos resistentes al clima para cada expedición.',
+    description: 'Weather-ready shelters for every expedition.',
     icon: '⛺',
   },
   {
     id: 'backpacks',
     name: 'Backpacks',
-    description: 'Carga inteligente y ergonómica para tus travesías.',
+    description: 'Ergonomic packs to carry everything you need.',
     icon: '🎒',
   },
   {
     id: 'sleeping-bags',
     name: 'Sleeping Bags',
-    description: 'Descanso térmico asegurado en el campamento.',
+    description: 'Thermal rest for a cozy night outdoors.',
     icon: '🛏️',
   },
   {
     id: 'hammocks',
     name: 'Hammocks',
-    description: 'Relájate bajo las estrellas con la máxima comodidad.',
+    description: 'Relax under the stars with ultimate comfort.',
     icon: '🪢',
   },
 ];
@@ -71,7 +71,7 @@ function renderHome() {
   if (pageTitle) pageTitle.textContent = 'GearUp Adventures';
   if (pageLead) {
     pageLead.textContent =
-      'Descubre nuestro equipo para dormir al aire libre y elige la categoría que necesites para tu próxima aventura.';
+      'Discover the best gear to sleep outside and choose the category that fits your next adventure.';
   }
 
   const markup = `
@@ -84,7 +84,7 @@ function renderHome() {
               <h2>${category.name}</h2>
               <p>${category.description}</p>
               <a class="button" href="./index.html?category=${category.id}">
-                Ver ${category.name}
+                Shop ${category.name}
               </a>
             </article>
           `
@@ -103,7 +103,7 @@ function renderProducts(products = [], category = DEFAULT_CATEGORY) {
   if (!products.length) {
     appContainer.innerHTML = `
       <section class="product-grid product-grid--empty">
-        <p>No encontramos productos para la categoría seleccionada.</p>
+        <p>No products found for the selected category.</p>
       </section>
     `;
     return;
@@ -121,7 +121,7 @@ function renderProducts(products = [], category = DEFAULT_CATEGORY) {
                 <p>${product.Tagline ?? product.Description ?? ''}</p>
                 <p class="product-card__price">${formatCurrency(product.Price)}</p>
                 <a class="button" href="./index.html?category=${category}&product=${product.Id}">
-                  Ver detalles
+                  View details
                 </a>
               </div>
             </article>
@@ -141,25 +141,25 @@ async function renderListing(categoryParam) {
   const displayName = titleCase(category);
   if (pageTitle) pageTitle.textContent = `Top Products: ${displayName}`;
   if (pageLead) {
-    pageLead.textContent = `Explora lo mejor de nuestra colección de ${displayName}.`;
+    pageLead.textContent = `Explore the best of our ${displayName} collection.`;
   }
 
-  setStatus('Cargando productos…');
+  setStatus('Loading products…');
 
   const dataSource = new ProductData(category);
 
   try {
     const products = await dataSource.getData();
     renderProducts(products, category);
-    setStatus(products.length ? '' : 'No encontramos productos para esta categoría.');
+    setStatus(products.length ? '' : 'No products available for this category.');
   } catch (error) {
     console.error('Unable to load products', error);
     appContainer.innerHTML = `
       <section class="product-grid product-grid--error">
-        <p>Ocurrió un problema al cargar los productos. Intenta nuevamente más tarde.</p>
+        <p>We had a problem loading the products. Please try again later.</p>
       </section>
     `;
-    setStatus('Error al cargar los productos.');
+    setStatus('Error loading products.');
   }
 }
 
@@ -167,24 +167,24 @@ async function renderDetail(productId, categoryParam) {
   const category = categoryParam ?? DEFAULT_CATEGORY;
   if (!ensureContainer()) return;
 
-  if (pageTitle) pageTitle.textContent = 'Detalles del producto';
+  if (pageTitle) pageTitle.textContent = 'Product details';
   if (pageLead) {
-    pageLead.textContent = 'Revisa la información completa del producto seleccionado.';
+    pageLead.textContent = 'See everything about the product you selected.';
   }
 
   appContainer.innerHTML = `
     <section class="product-details">
       <a class="button button--ghost product-details__back" href="./index.html?category=${category}">
-        ← Volver a ${titleCase(category)}
+        ← Back to ${titleCase(category)}
       </a>
-      <h2 id="productName" class="product-details__title">Cargando…</h2>
+      <h2 id="productName" class="product-details__title">Loading…</h2>
       <p id="productTagline" class="product-details__tagline"></p>
       <div id="productDetails"></div>
       <p id="cartConfirmation" class="product-card__confirmation"></p>
     </section>
   `;
 
-  setStatus('Cargando detalles del producto…');
+  setStatus('Loading product details…');
 
   const dataSource = new ProductData(category);
   const details = new ProductDetails(productId, dataSource, {
@@ -199,7 +199,7 @@ async function renderDetail(productId, categoryParam) {
     setStatus('');
   } catch (error) {
     console.error('Unable to load product detail', error);
-    setStatus('No pudimos cargar los detalles del producto.');
+    setStatus('We could not load the product details.');
   }
 }
 
