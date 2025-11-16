@@ -5,10 +5,14 @@ function ensureArray(value) {
 }
 
 export default class ProductDetails {
-  constructor(productId, dataSource) {
+  constructor(productId, dataSource, selectors = {}) {
     this.productId = productId;
     this.product = null;
     this.dataSource = dataSource;
+    this.headingSelector = selectors.heading ?? '#productName';
+    this.taglineSelector = selectors.tagline ?? '#productTagline';
+    this.containerSelector = selectors.container ?? '#productDetails';
+    this.confirmationSelector = selectors.confirmation ?? '#cartConfirmation';
   }
 
   async init() {
@@ -43,7 +47,7 @@ export default class ProductDetails {
 
     window.dispatchEvent(new CustomEvent('cart:updated'));
 
-    const confirmation = document.getElementById('cartConfirmation');
+    const confirmation = document.querySelector(this.confirmationSelector);
     if (confirmation) {
       confirmation.textContent = `${this.product.Name} was added to the cart.`;
       confirmation.classList.add('is-visible');
@@ -52,9 +56,9 @@ export default class ProductDetails {
   }
 
   renderProductDetails() {
-    const heading = document.getElementById('productName');
-    const tagline = document.getElementById('productTagline');
-    const container = document.getElementById('productDetails');
+    const heading = document.querySelector(this.headingSelector);
+    const tagline = document.querySelector(this.taglineSelector);
+    const container = document.querySelector(this.containerSelector);
 
     if (heading) heading.textContent = this.product.Name;
     if (tagline) tagline.textContent = this.product.Tagline;
@@ -97,8 +101,8 @@ export default class ProductDetails {
   }
 
   renderError(message) {
-    const container = document.getElementById('productDetails');
-    const heading = document.getElementById('productName');
+    const container = document.querySelector(this.containerSelector);
+    const heading = document.querySelector(this.headingSelector);
 
     if (heading) heading.textContent = 'Product not found';
     if (!container) return;
@@ -106,7 +110,7 @@ export default class ProductDetails {
     container.innerHTML = `
       <div class="product-card product-card--error">
         <p>${message}</p>
-        <a class="button" href="../index.html">Back to catalog</a>
+        <a class="button" href="./index.html">Back to catalog</a>
       </div>
     `;
   }

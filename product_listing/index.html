@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GearUp Adventures | Sleep Outside</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Product Listings | GearUp Adventures</title>
+    <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
     <header class="page-header">
       <div class="wrapper">
         <div class="page-header__top">
-          <h1 id="pageTitle">GearUp Adventures</h1>
+          <h1 id="listingTitle">Top Products</h1>
           <nav class="header-actions">
-            <a class="header-link" href="./index.html">Inicio</a>
+            <a class="header-link" href="../index.html">Home</a>
             <button
               class="button button--ghost cart-button"
               id="cartButton"
@@ -20,19 +20,18 @@
               aria-haspopup="dialog"
               aria-expanded="false"
             >
-              Ver carrito
+              View cart
             </button>
           </nav>
         </div>
-        <p class="lead" id="pageLead">
-          Descubre nuestro equipo para dormir al aire libre y elige la categoría
-          que necesites para tu próxima aventura.
+        <p class="lead" id="listingTagline">
+          Browse our outdoor gear collection. Choose a category from the homepage to see products tailored to your next adventure.
         </p>
       </div>
     </header>
     <main class="wrapper">
-      <div id="app"></div>
-      <p id="appStatus" class="app-status" aria-live="polite"></p>
+      <section class="product-grid" data-product-list></section>
+      <p id="listingStatus" class="product-card__confirmation" aria-live="polite"></p>
     </main>
     <footer class="page-footer">
       <div class="wrapper">
@@ -64,6 +63,6 @@
         </footer>
       </div>
     </div>
-    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="../js/product-listing.js"></script>
   </body>
 </html>

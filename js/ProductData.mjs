@@ -6,9 +6,10 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
-  constructor(category) {
+  constructor(category = 'tents') {
     this.category = category;
-    this.path = `../json/${this.category}.json`;
+    this.basePath = './json';
+    this.path = `${this.basePath}/${this.category}.json`;
   }
 
   async getData() {
