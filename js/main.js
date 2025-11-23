@@ -43,6 +43,10 @@ const categories = [
   },
 ];
 
+const homeState = {
+  search: '',
+};
+
 const listingState = {
   category: DEFAULT_CATEGORY,
   products: [],
@@ -55,6 +59,50 @@ const listingState = {
 };
 
 const SKELETON_CARD_COUNT = 6;
+
+function filterCategories(searchValue = '') {
+  const term = normalizeText(searchValue);
+  if (!term) return categories;
+
+  return categories.filter((category) => {
+    const haystack = normalizeText(`${category.name} ${category.description}`);
+    return haystack.includes(term);
+  });
+}
+
+function buildCategoryCardsMarkup(items = []) {
+  if (!items.length) {
+    return `
+      <section class="category-grid category-grid--empty">
+        <p>No categories match your search.</p>
+      </section>
+    `;
+  }
+
+  const cards = items
+    .map(
+      (category) => `
+        <article class="category-card">
+          <div class="category-card__icon" aria-hidden="true">${category.icon}</div>
+          <h2>${category.name}</h2>
+          <p>${category.description}</p>
+          <a class="button" href="./index.html?category=${category.id}">
+            Shop ${category.name}
+          </a>
+        </article>
+      `
+    )
+    .join('');
+
+  return `<section class="category-grid">${cards}</section>`;
+}
+
+function categorySummaryText(total, filtered) {
+  if (total === 0) return 'No categories available.';
+  if (filtered === 0) return 'No categories match your search.';
+  if (filtered === total) return `Showing all ${filtered} categor${filtered === 1 ? 'y' : 'ies'}.`;
+  return `Showing ${filtered} of ${total} categor${total === 1 ? 'y' : 'ies'}.`;
+}
 
 function createSkeletonMarkup(count = SKELETON_CARD_COUNT) {
   return Array.from({ length: count })
@@ -200,25 +248,46 @@ function renderHome() {
   }
 
   const markup = `
-    <section class="category-grid">
-      ${categories
-        .map(
-          (category) => `
-            <article class="category-card">
-              <div class="category-card__icon" aria-hidden="true">${category.icon}</div>
-              <h2>${category.name}</h2>
-              <p>${category.description}</p>
-              <a class="button" href="./index.html?category=${category.id}">
-                Shop ${category.name}
-              </a>
-            </article>
-          `
-        )
-        .join('')}
+    <section class="home-toolbar" aria-label="Category filters">
+      <div class="home-toolbar__group">
+        <label class="field-label" for="homeSearch">Search categories</label>
+        <input
+          id="homeSearch"
+          type="search"
+          class="field-input"
+          placeholder="Search by name or keywords"
+          autocomplete="off"
+        />
+      </div>
+      <p class="home-toolbar__summary" id="homeSummary" aria-live="polite"></p>
     </section>
+    <div id="homeCategories" class="home-categories"></div>
   `;
 
   appContainer.innerHTML = markup;
+
+  const searchInput = document.getElementById('homeSearch');
+  const summaryElement = document.getElementById('homeSummary');
+  const categoriesContainer = document.getElementById('homeCategories');
+
+  function updateHomeListing() {
+    if (!categoriesContainer || !summaryElement) return;
+
+    const filtered = filterCategories(homeState.search);
+    categoriesContainer.innerHTML = buildCategoryCardsMarkup(filtered);
+    summaryElement.textContent = categorySummaryText(categories.length, filtered.length);
+  }
+
+  updateHomeListing();
+
+  if (searchInput) {
+    searchInput.value = homeState.search;
+    searchInput.addEventListener('input', () => {
+      homeState.search = searchInput.value;
+      updateHomeListing();
+    });
+  }
+
   setStatus('');
 }
 
