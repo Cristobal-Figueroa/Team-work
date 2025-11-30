@@ -35,6 +35,7 @@ export default class CartModal {
     this.emptyMessage = this.modal?.querySelector('#cartEmptyMessage');
     this.closeButtons = this.modal?.querySelectorAll('[data-cart-close]') ?? [];
     this.emptyButton = this.modal?.querySelector('[data-cart-empty]');
+    this.continueButton = this.modal?.querySelector('[data-cart-continue]');
 
     this.updateState = this.updateState.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
@@ -42,6 +43,7 @@ export default class CartModal {
     this.handleQuantityButton = this.handleQuantityButton.bind(this);
     this.handleQuantityInput = this.handleQuantityInput.bind(this);
     this.handleEmptyCart = this.handleEmptyCart.bind(this);
+    this.handleContinueShopping = this.handleContinueShopping.bind(this);
   }
 
   init() {
@@ -68,6 +70,10 @@ export default class CartModal {
 
     if (this.emptyButton) {
       this.emptyButton.addEventListener('click', this.handleEmptyCart);
+    }
+
+    if (this.continueButton) {
+      this.continueButton.addEventListener('click', this.handleContinueShopping);
     }
 
     this.updateState();
@@ -240,5 +246,10 @@ export default class CartModal {
   handleEmptyCart() {
     this.saveItems([]);
     this.updateState();
+  }
+
+  handleContinueShopping() {
+    this.close();
+    this.button?.focus();
   }
 }
