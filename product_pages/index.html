@@ -13,6 +13,8 @@
           <h1 id="productName">Product details</h1>
           <nav class="header-actions">
             <a class="header-link" href="../index.html">Home</a>
+            <a class="header-link" href="../checkout/index.html">Checkout</a>
+            <a class="header-link" href="../orders/index.html">My orders</a>
             <button
               class="button button--ghost cart-button"
               id="cartButton"
@@ -57,12 +59,19 @@
             <strong id="cartTotal">$0</strong>
           </div>
           <div class="cart-modal__actions">
-            <button class="button button--ghost cart-modal__empty-cart" type="button" data-cart-empty>
-              Empty cart
-            </button>
-            <button class="button button--primary cart-modal__checkout" type="button" data-cart-close data-cart-continue>
-              Continue shopping
-            </button>
+            <div class="cart-modal__actions-left">
+              <button class="button button--ghost cart-modal__empty-cart" type="button" data-cart-empty>
+                Empty cart
+              </button>
+            </div>
+            <div class="cart-modal__actions-right">
+              <button class="button button--primary cart-modal__checkout" type="button" data-cart-close data-cart-continue>
+                Continue shopping
+              </button>
+              <a class="button button--primary cart-modal__checkout-link" href="../checkout/index.html">
+                Go to checkout
+              </a>
+            </div>
           </div>
         </footer>
       </div>

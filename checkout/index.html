@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout | GearUp Adventures</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="wrapper">
+        <div class="page-header__top">
+          <h1>Checkout</h1>
+          <nav class="header-actions">
+            <a class="header-link" href="../index.html">Home</a>
+            <a class="header-link" href="../checkout/index.html">Checkout</a>
+            <a class="header-link" href="../orders/index.html">My orders</a>
+            <button
+              class="button button--ghost cart-button"
+              id="cartButton"
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+            >
+              View cart
+            </button>
+          </nav>
+        </div>
+        <p class="lead">Review your cart items, share your details, and we'll prepare your order.</p>
+      </div>
+    </header>
+
+    <main class="wrapper checkout-layout">
+      <section class="checkout-summary" aria-labelledby="summaryTitle">
+        <div class="section-heading">
+          <h2 id="summaryTitle">Order summary</h2>
+          <p id="summaryMeta" class="section-subtitle"></p>
+        </div>
+        <ul id="orderList" class="order-list"></ul>
+        <div class="checkout-total">
+          <span>Total</span>
+          <strong id="orderTotal">$0</strong>
+        </div>
+        <p id="emptyNotice" class="order-empty" hidden>Your cart is empty. Add items before checking out.</p>
+      </section>
+
+      <section class="checkout-form" aria-labelledby="formTitle">
+        <div class="section-heading">
+          <h2 id="formTitle">Contact & delivery</h2>
+          <p class="section-subtitle">We will send your confirmation to the email you provide.</p>
+        </div>
+        <form id="checkoutForm">
+          <div class="checkout-form__group">
+            <label for="fullName">Full name</label>
+            <input id="fullName" name="fullName" type="text" required placeholder="Sarah Connor" />
+          </div>
+          <div class="checkout-form__group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+          </div>
+          <div class="checkout-form__group">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="(+1) 555-1234" />
+          </div>
+          <div class="checkout-form__group">
+            <label for="address">Address</label>
+            <input id="address" name="address" type="text" required placeholder="123 Mountain Road" />
+          </div>
+          <div class="checkout-form__inline">
+            <div class="checkout-form__group">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" required />
+            </div>
+            <div class="checkout-form__group">
+              <label for="state">State</label>
+              <input id="state" name="state" type="text" required />
+            </div>
+            <div class="checkout-form__group">
+              <label for="zip">ZIP</label>
+              <input id="zip" name="zip" type="text" required />
+            </div>
+          </div>
+          <div class="checkout-form__group">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Optional instructions"></textarea>
+          </div>
+          <button class="button button--primary checkout-submit" type="submit">
+            Place order
+          </button>
+          <p id="checkoutStatus" class="order-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <div class="wrapper">
+        <p>&copy; <span id="year"></span> GearUp Adventures</p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <div class="cart-modal" id="cartModal" aria-hidden="true">
+      <div class="cart-modal__backdrop" data-cart-close></div>
+      <div class="cart-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
+        <header class="cart-modal__header">
+          <h2 id="cartModalTitle">Shopping cart</h2>
+          <button class="cart-modal__close" type="button" data-cart-close aria-label="Close cart">&times;</button>
+        </header>
+        <section class="cart-modal__body">
+          <p id="cartEmptyMessage" class="cart-modal__empty">Your cart is empty.</p>
+          <ul id="cartItems" class="cart-modal__list"></ul>
+        </section>
+        <footer class="cart-modal__footer">
+          <div class="cart-modal__total">
+            <span>Total</span>
+            <strong id="cartTotal">$0</strong>
+          </div>
+          <div class="cart-modal__actions">
+            <button class="button button--ghost cart-modal__empty-cart" type="button" data-cart-empty>
+              Empty cart
+            </button>
+            <button class="button button--primary cart-modal__checkout" type="button" data-cart-close data-cart-continue>
+              Continue shopping
+            </button>
+            <a class="button button--primary cart-modal__checkout-link" href="../checkout/index.html">
+              Go to checkout
+            </a>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script type="module" src="../js/checkout.js"></script>
+  </body>
+</html>

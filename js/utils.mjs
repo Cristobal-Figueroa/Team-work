@@ -1,4 +1,5 @@
 export const CART_KEY = 'so-cart';
+export const LAST_ORDER_KEY = 'so-last-order';
 
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
